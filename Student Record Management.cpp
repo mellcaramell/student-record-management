@@ -20,6 +20,7 @@ double calculateAverageScores(const double[], int);
 void displayStudentRecords(const int[], const string[], const double[], const int[], int, double);
 void findStudent(const int[], const string[], const double[], const int[], int, int);
 
+//start of main
 int main() {
     // Arrays to store student data
     int studentID[50];
@@ -88,6 +89,7 @@ int main() {
 
     return 0;
 }
+//end of main
 
 // Function to input student data to collect user input for student data
 void inputStudentData(int studentID[], string studentName[], double scores[], int attendance[], int& numStudents) {
