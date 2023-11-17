@@ -5,7 +5,7 @@
 	Description:This C++ program is designed for managing and analyzing student records at a 
 				high school named "Starlight High School Student Records." The program provides a menu-driven 
 				interface that allows users to perform various operations, including inputting student data, 
-				calculating average scores, and displaying student records.
+				calculating average scores, displaying student records, and finding students by using id.
 */
 
 #include <iostream>
@@ -18,6 +18,7 @@ using namespace std;
 void inputStudentData(int[], string[], double[], int[], int&);
 double calculateAverageScores(const double[], int);
 void displayStudentRecords(const int[], const string[], const double[], const int[], int, double);
+void findStudent(const int[], const string[], const double[], const int[], int, int);
 
 int main() {
     // Arrays to store student data
@@ -28,7 +29,7 @@ int main() {
 
     // Number of students
     int numStudents = 0;
-
+	
     // Menu-driven program
     int choice;
     do {
@@ -37,8 +38,9 @@ int main() {
         cout << "1. Input Student Data\n";
         cout << "2. Calculate Average Scores\n";
         cout << "3. Display Student Records\n";
-        cout << "4. Exit\n";
-        cout << "Enter your choice (1-4): ";
+        cout << "4. Find a Student by ID\n"; // Added option to find a student by ID
+        cout << "5. Exit\n";
+        cout << "Enter your choice (1-5): ";
         cin >> choice;
 
         // Perform the selected operation
@@ -65,13 +67,24 @@ int main() {
                 }
                 break;
             case 4:
+                // Find a student by ID
+                if (numStudents > 0) {
+                    int searchID;
+                    cout << "Enter the student ID to search for: ";
+                    cin >> searchID;
+                    findStudent(studentID, studentName, scores, attendance, numStudents, searchID);
+                } else {
+                    cout << "No student data available. Please input student data first.\n";
+                }
+                break;
+            case 5:
                 // Exit the program
                 cout << "Exiting program. Goodbye!\n";
                 break;
             default:
-                cout << "Invalid choice. Please enter a number between 1 and 4.\n";
+                cout << "Invalid choice. Please enter a number between 1 and 5.\n";
         }
-    } while (choice != 4);
+    } while (choice != 5);
 
     return 0;
 }
@@ -96,12 +109,23 @@ void inputStudentData(int studentID[], string studentName[], double scores[], in
         cin.ignore(); // Clear newline character from previous input
         getline(cin, studentName[i]);
 
-        cout << "  Scores: ";
-        cin >> scores[i];
+    	cout<<"  Score: ";
+		cin>>scores[i];
+	
+		while(scores[i] < 0 || scores[i] > 100){
+		cout<<"Invalid score. Please enter a number between 0 and 100:";
+		cin>>scores[i];
+	}
 
-        cout << "  Attendance (%): ";
-        cin >> attendance[i];
-    }
+	    cout << "  Attendance: ";
+	    cin >> attendance[i];
+	
+	    while(attendance[i] < 0 || attendance[i] > 100){
+		cout<<"Invalid score. Please enter a number between 0 and 100:";
+		cin>>attendance[i];
+	}
+}
+
 } //end of input student data
 
 // Function to calculate average scores to calculate the everage score for all students
@@ -134,3 +158,25 @@ void displayStudentRecords(const int studentID[], const string studentName[], co
     cout << "--------------------------------------------------\n";
     cout << "Average Score: " << average << "\n";
 } //end of display student records
+
+//functions to find student by insertind IDs number
+void findStudent(const int studentID[], const string studentName[], const double scores[],
+                 const int attendance[], int numStudents, int searchID) {
+    bool found = false;
+
+    for (int i = 0; i < numStudents; ++i) {
+        if (studentID[i] == searchID) {
+            cout << "Found student:\n";
+            cout << "ID: " << studentID[i] << "\n";
+            cout << "Name: " << studentName[i] << "\n";
+            cout << "Scores: " << scores[i] << "\n";
+            cout << "Attendance: " << attendance[i] << "%\n";
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Student with ID " << searchID << " not found.\n";
+    }
+} //end of find student
