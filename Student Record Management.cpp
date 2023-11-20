@@ -1,11 +1,11 @@
 /*
 	Filename   :StudentRecordManagement.cpp
 	Date       :11 November 2023
-	Programmer : mell
+	Programmer : mell, najihah, nadz, athirah, nabihah
 	Description:This C++ program is designed for managing and analyzing student records at a 
-				high school named "Starlight High School Student Records." The program provides a menu-driven 
-				interface that allows users to perform various operations, including inputting student data, 
-				calculating average scores, displaying student records, and finding students by using id.
+			high school named "Starlight High School Student Records." The program provides a menu-driven 
+			interface that allows users to perform various operations, including inputting student data, 
+			calculating average scores, displaying student records, and finding students by using id.
 */
 
 #include <iostream>
@@ -20,6 +20,7 @@ double calculateAverageScores(const double[], int);
 void displayStudentRecords(const int[], const string[], const double[], const int[], int, double);
 void findStudent(const int[], const string[], const double[], const int[], int, int);
 
+//najihah husna
 //start of main
 int main() {
     // Arrays to store student data
@@ -91,6 +92,7 @@ int main() {
 }
 //end of main
 
+//athirah m.faslee
 // Function to input student data to collect user input for student data
 void inputStudentData(int studentID[], string studentName[], double scores[], int attendance[], int& numStudents) {
     cout << "Enter the number of students (up to " << 50 << "): ";
@@ -130,6 +132,7 @@ void inputStudentData(int studentID[], string studentName[], double scores[], in
 
 } //end of input student data
 
+//nur nabihah
 // Function to calculate average scores to calculate the everage score for all students
 double calculateAverageScores(const double scores[], int numStudents) {
     double sum = 0;
@@ -139,6 +142,7 @@ double calculateAverageScores(const double scores[], int numStudents) {
     return (numStudents > 0) ? sum / numStudents : 0.0;
 } // end of calculate average scores
 
+//nurain nadzirah
 // Function to display student records to presents student information, including IDs, names, scores, attendance, and the calculated average score
 void displayStudentRecords(const int studentID[], const string studentName[], const double scores[],
                             const int attendance[], int numStudents, double average) {
@@ -161,6 +165,7 @@ void displayStudentRecords(const int studentID[], const string studentName[], co
     cout << "Average Score: " << average << "\n";
 } //end of display student records
 
+//nur ku safiyyah (mell)
 //functions to find student by insertind IDs number
 void findStudent(const int studentID[], const string studentName[], const double scores[],
                  const int attendance[], int numStudents, int searchID) {
